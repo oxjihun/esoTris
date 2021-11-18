@@ -1,76 +1,123 @@
 window.onload = function() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
+
+    setBoard(); /* debugBoard(); */
     createGradient();
     loadImage();
 };
 
-var canvas;
-var ctx;
-var grad;
-
-var imgCd; /* Center, Day   */
-var imgCn; /* Center, Night */
-var imgWd = []; /* Wings, Day   */
-var imgWn = []; /* Wings, Night */
+var canvas, ctx, grad;
+var imgCd;      /* Center, Day   */
+var imgCn;      /* Center, Night */
+var imgWd = []; /* Wings,  Day   */
+var imgWn = []; /* Wings,  Night */
 
 var board = [];
-for(let i = -3; i < 16; i++) {
-    board[i+3] = [];
-    for(let j = 0; j < 9; j++) {
-        board[i+3][j] = -1;
+
+var piece = [0, 4, 1, 1]; /* type, pos, ori */
+var loopCount = 0;
+
+function main() { /* "키 입력 -> 새로운 block 상태 계산 -> 렌더링" 반복 */
+    if (loopCount === 0) {
+        console.log("rotate: "+rotate(piece, 1));
+        console.log("move: "+move(piece, [0,1])[0]);
+        console.log("piece: "+piece);
+    }
+    render();
+    loopCount++;
+    loopCount = loopCount % 50;
+}
+
+/* move */
+
+function move(piece, way) {
+    var type = piece[0], x = piece[1], y = piece[2]; ori = piece[3];
+    removePieceFromBoard(piece);
+    var newPiece = [type, x + way[0], y + way[1], ori]
+    var moved;
+    if (available(newPiece)) {
+        placePieceOnBoard(newPiece);
+        piece[1] = piece[1] + way[0];
+        piece[2] = piece[2] + way[1];
+        moved = true;
+    } else {
+        placePieceOnBoard(piece);
+        moved = false;
+    }
+    newPiece[2] = newPiece[2] + 1;
+    return [moved, available(newPiece)]; /* 움직였는가? 다음 턴 아래에 공간이 있는가? */
+}
+
+function rotate(piece, dO) { /* dO 는 delta Orientation */
+    var type = piece[0], x = piece[1], y = piece[2]; ori = piece[3];
+    removePieceFromBoard(piece);
+    var testPiece;
+    var placeToMove = [[0,0],[0,-1],[-dO,-1],[dO,-1],[-dO,0],[dO,0],[0,1],[-dO,1],[dO,1]];
+    for(let i = 0; i < 9; i++) {
+        testPiece = [type, x + placeToMove[i][0], y + placeToMove[i][1], (ori + dO) % 8]
+        if (available(testPiece)) {
+            placePieceOnBoard(testPiece);
+            piece[1] = piece[1] + placeToMove[i][0];
+            piece[2] = piece[2] + placeToMove[i][1];
+            piece[3] = (piece[3] + dO) % 8;
+            return true;
+        }
+    }
+    placePieceOnBoard(piece);
+    return false;
+}
+
+/* behind the scenes */
+
+function removePieceFromBoard(piece) {
+    var type = piece[0], x = piece[1], y = piece[2]; ori = piece[3];
+    var occupyData = checkOccupy(piece);
+    for(let i = 0; i < 3; i++) {
+        board[occupyData[i][1]+3][occupyData[i][0]] = -1;
     }
 }
 
-/* 디버깅, 첫 세 행은 화면 밖을 의미함 */
-var board = [[-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [ 0, 1,-1,-1,-1,-1,-1,-1,-1],
-             [ 7,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1]]
-/**/
-
-var currentPieceType = 0;
-var currentPos = [4, -2];
-var currentOrientation = 1;
-
-function main() { /* "키 입력 -> 새로운 block 상태 계산 -> 렌더링" 반복 */
-    board[0 + 3][0] = Math.floor(Math.random() * 17)
-    render();
+function placePieceOnBoard(piece) {
+    var type = piece[0], x = piece[1], y = piece[2]; ori = piece[3];
+    var occupyData = checkOccupy(piece);
+    if (available(piece)) {
+        board[occupyData[0][1]+3][occupyData[0][0]] = 0;
+        board[occupyData[1][1]+3][occupyData[1][0]] = occupyData[3][0] + 1;
+        board[occupyData[2][1]+3][occupyData[2][0]] = occupyData[3][1] + 1;
+    }
 }
 
-function checkOccupy(pieceType, pos, orientation) {
-    var angle = [orientation % 8, (4 - pieceType + orientation) % 8];
+function checkOccupy(piece) {
+    var type = piece[0], x = piece[1], y = piece[2]; ori = piece[3];
+    var angle = [ori % 8, (4 - type + ori) % 8];
     var delta = [[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1],[0,1],[1,1]];
-    return [pos, [pos[0] + delta[angle[0]][0], pos[1] + delta[angle[0]][1]], [pos[0] + delta[angle[1]][0], pos[1] + delta[angle[1]][1]], angle];
+    return [[x, y], [x + delta[angle[0]][0], y + delta[angle[0]][1]], [x + delta[angle[1]][0], y + delta[angle[1]][1]], angle]; /* occupyData */
 }
 
-function moveK() {
-    return 0;
+function available(piece) {
+    var type = piece[0], x = piece[1], y = piece[2]; ori = piece[3];
+    var occupyData = checkOccupy(piece);
+    var X, Y;
+    for(let i = 0; i < 3; i++) {
+        X = occupyData[i][0]
+        Y = occupyData[i][1]
+        if (!((0 <= X) && (X < 9) && (-3 <= Y) && (Y < 16)))
+            return false;
+        if (board[Y+3][X] !== -1)
+            return false;
+    }
+    return true;
 }
+
+/* ctx */
 
 function render() {
-    ctx.save();
     ctx.clearRect(0, 0, 380, 660); /* 추후 바뀔 수 있음 */
     drawGradient();
     placeBlocks();
     drawGrid();
     drawBorder();
-    ctx.restore();
 }
 
 function loadImage() {
@@ -98,7 +145,7 @@ var count = 10;
 function checkLoad() {
     count = count - 1;
     if(count === 0) {
-        setInterval(main, 100); /* 얼마나 빨리 화면이 바뀌는지 결정 */
+        setInterval(main, 10); /* 얼마나 빨리 화면이 바뀌는지 결정 */
     }
 }
 
@@ -163,6 +210,37 @@ function drawBorder() {
     ctx.lineJoin = "round";
     ctx.strokeRect(5 + 1, 5 + 1, 40 * 9 + 10 - 2, 40 * 16 + 10 - 2);
     ctx.restore();
+}
+
+function setBoard() {
+    for(let i = -3; i < 16; i++) {
+        board[i+3] = [];
+        for(let j = 0; j < 9; j++) {
+            board[i+3][j] = -1;
+        }
+    }
+}
+
+function debugBoard() {
+    board = [[-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [ 0, 1,-1,-1,-1,-1,-1,-1,-1],
+             [ 7,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1]];
 }
 
 function template() {

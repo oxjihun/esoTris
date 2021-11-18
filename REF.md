@@ -40,10 +40,20 @@ https://tecadmin.net/get-current-date-time-javascript/
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-# 2021-11-18 (잠 들기 전, 자정이 지난 시점)
+# 2021-11-18 (잠 들기 전, 자정 지난 시점)
 
 https://www.w3schools.com/html/html_favicon.asp
 
 https://webdir.tistory.com/337
 
 # 2021-11-18
+
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save
+
+https://stackoverflow.com/q/694102
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT
+
+https://stackoverflow.com/q/2917175
+
+https://stackoverflow.com/q/14226803
