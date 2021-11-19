@@ -40,7 +40,7 @@ https://tecadmin.net/get-current-date-time-javascript/
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-# 2021-11-18 (잠 들기 전, 자정 지난 시점)
+# 2021-11-18 (자기 전, 자정 지난 시점)
 
 https://www.w3schools.com/html/html_favicon.asp
 
@@ -57,3 +57,27 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logi
 https://stackoverflow.com/q/2917175
 
 https://stackoverflow.com/q/14226803
+
+# 2021-11-19
+
+https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/while
+
+https://www.w3schools.com/jsref/event_key_keycode.asp
+
+https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener
+
+https://developer.mozilla.org/ko/docs/Web/API/Document/body
+
+https://ourcstory.tistory.com/158
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/shift
+
+https://tecadmin.net/get-current-date-time-javascript/
+
+https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
+
+https://developer.mozilla.org/en-US/docs/Web/API/setInterval
