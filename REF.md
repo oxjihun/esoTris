@@ -81,3 +81,19 @@ https://tecadmin.net/get-current-date-time-javascript/
 https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
 
 https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+
+# 2021-11-21
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/break
+
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign
+
+https://stackoverflow.com/q/2608022
+
+https://stackoverflow.com/q/4712242
+
+https://stackoverflow.com/q/9853463
+
+https://stackoverflow.com/q/197748
+
+https://developer.mozilla.org/ko/docs/Web/CSS/font
