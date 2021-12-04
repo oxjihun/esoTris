@@ -117,3 +117,9 @@ https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawIm
 https://stackoverflow.com/q/694102
 
 https://codepo8.github.io/canvas-images-and-pixels/resize.html
+
+https://hianna.tistory.com/480
+
+https://stackoverflow.com/a/8683553
+
+https://stackoverflow.com/q/19053181

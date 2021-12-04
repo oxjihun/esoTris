@@ -1,4 +1,4 @@
-var count = 12; // blocks(10) + rmvr(1) + font(1)
+var count = 14; // blocks(10) + rmvr(1) + font(1) + sun(1) + moon(1)
 
 function checkLoad() {
     count = count - 1;
@@ -8,6 +8,9 @@ function checkLoad() {
 }
 
 var buttonDayNight, canvas, ctx, grad;
+
+// images
+
 var imgCd;      /* Center, Day   */
 var imgCn;      /* Center, Night */
 var imgWd = []; /* Wings,  Day   */
@@ -16,6 +19,16 @@ var imgWn = []; /* Wings,  Night */
 var rmvr = new Image();
 rmvr.onload = checkLoad;
 rmvr.src = "images/rmvr.png";
+
+var sun = new Image();
+sun.onload = checkLoad;
+sun.src = "images/sun.png";
+
+var moon = new Image();
+moon.onload = checkLoad;
+moon.src = "images/moon.png";
+
+// board & pieces
 
 var board = [];
 var pieceList = []; /* type, pos, ori */
@@ -34,6 +47,7 @@ window.onload = function () {
     buttonDayNight = document.getElementById("buttonDayNight");
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
+    Tris = document.getElementById("Tris");
 
     biasDayNight = 0; // 0: day, 9: night
 
@@ -308,7 +322,7 @@ function loadImage() {
 
 function createGradient() {
     grad = ctx.createLinearGradient(0, 0, 0, 40 * 16);
-    grad.addColorStop(0, "#BBB");
+    grad.addColorStop(0, "#888");
     grad.addColorStop(1, "#444");
 }
 
@@ -587,16 +601,16 @@ function switchDayNight() {
     else
         biasDayNight = 0;
 
-    if(biasDayNight === 0)
+    if(biasDayNight === 0) {
         document.body.style.background = "#FFF";
-    else
+        buttonDayNight.style.background = "url(images/moon.png)";
+        Tris.style.color = "#000";
+    }
+    else {
         document.body.style.background = "#000";
-
-    if(biasDayNight === 0)
-        buttonDayNight.innerText = "밤";
-    else
-        buttonDayNight.innerText = "낮";
-
+        buttonDayNight.style.background = "url(images/sun.png)";
+        Tris.style.color = "#FFF";
+    }
 }
 
 function template() {

@@ -13,9 +13,35 @@ body {
 
 main {
     font:30px SF_IceLemon;
+    height: 30px;
+}
+
+main:hover {
+    cursor: default;
 }
 
 #canvas {
     display:inline-block;
-    margin:5px 0 5px;
+    margin:10px 0 10px;
+}
+
+#eso {
+    color:#3b86ca
+}
+
+#buttonDayNight {
+    height:30px;
+    width:30px;
+    background:url(images/moon.png);
+    border:0;
+    margin:0;
+}
+
+#buttonDayNight:hover {
+    cursor: pointer;
+}
+
+#buttonDayNight:focus {
+    outline: none;
+    box-shadow: none;
 }
