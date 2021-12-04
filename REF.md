@@ -101,3 +101,19 @@ https://developer.mozilla.org/ko/docs/Web/CSS/font
 # 2021-11-22
 
 https://stackoverflow.com/q/41468951
+
+# 2021-11-26
+
+https://noonnu.cc/font_page/691
+
+# 2021-12-03
+
+https://stackoverflow.com/q/12538820
+
+# 2021-12-04
+
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
+
+https://stackoverflow.com/q/694102
+
+https://codepo8.github.io/canvas-images-and-pixels/resize.html

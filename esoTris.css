@@ -1,13 +1,21 @@
 @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-family: 'SF_IceLemon';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_IceLemon.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Cafe24SsurroundAir';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+body {
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+main {
+    font:30px SF_IceLemon;
+}
+
+#canvas {
+    display:inline-block;
+    margin:5px 0 5px;
 }

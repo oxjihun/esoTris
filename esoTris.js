@@ -1,22 +1,13 @@
-window.onload = function() {
-    buttonDayNight = document.getElementById("buttonDayNight");
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext('2d');
+var count = 12; // blocks(10) + rmvr(1) + font(1)
 
-    biasDayNight = 0; // 0: day, 9: night
-
-    for(let i = 0; i < 3; i++) {
-        pushPiece();
+function checkLoad() {
+    count = count - 1;
+    if (count === 0) {
+        setInterval(main, 5); /* 얼마나 빨리 화면이 바뀌는지 결정 */
     }
-    pieceList[0][2] = 2;
-    setBoard(); /* debugBoard(); */
-    placePieceOnBoard(pieceList[0]);
+}
 
-    createGradient();
-    loadImage();
-};
-
-var canvas, ctx, grad;
+var buttonDayNight, canvas, ctx, grad;
 var imgCd;      /* Center, Day   */
 var imgCn;      /* Center, Night */
 var imgWd = []; /* Wings,  Day   */
@@ -38,6 +29,24 @@ var toRemove;
 var biasDayNight;
 
 var score = 0;
+
+window.onload = function () {
+    buttonDayNight = document.getElementById("buttonDayNight");
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext('2d');
+
+    biasDayNight = 0; // 0: day, 9: night
+
+    for (let i = 0; i < 3; i++) {
+        pushPiece();
+    }
+    pieceList[0][2] = 2;
+    setBoard(); /* debugBoard(); */
+    placePieceOnBoard(pieceList[0]);
+
+    createGradient();
+    loadImage();
+};
 
 function main() { /* "키 입력 -> 새로운 block 상태 계산 -> 렌더링" 반복 */
     /* var debugTimeStart = performance.now(); */
@@ -297,19 +306,10 @@ function loadImage() {
     }
 }
 
-var count = 12; // blocks(10) + rmvr(1) + font(1)
-
-function checkLoad() {
-    count = count - 1;
-    if(count === 0) {
-        setInterval(main, 5); /* 얼마나 빨리 화면이 바뀌는지 결정 */
-    }
-}
-
 function createGradient() {
     grad = ctx.createLinearGradient(0, 0, 0, 40 * 16);
-    grad.addColorStop(0, "#CCC");
-    grad.addColorStop(1, "#333");
+    grad.addColorStop(0, "#BBB");
+    grad.addColorStop(1, "#444");
 }
 
 function switchState(piece) {
@@ -335,28 +335,6 @@ function setBoard() {
     }
 }
 
-function debugBoard() {
-    board = [[-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [ 0, 1,-1,-1,-1,-1,-1,-1,-1],
-             [ 7,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-             [-1,-1,-1,-1,-1,-1,-1,-1,-1]];
-}
-
 /* ctx coordinates */
 
 var padding = 310;
@@ -365,28 +343,40 @@ function renderGame() {
     ctx.clearRect(0, 0, 380 + padding * 2, 660); /* 추후 바뀔 수 있음 */
     drawGradient();
     drawTriangle(piece);
-    placeBlocks();
-    drawGrid();
+    drawBoard();
+    drawGridMain();
+    drawSidePiece(padding + 380 + 4 + 5 + 20 * 2, 10 + 40 + 2 * 20, pieceList[1]);
+    drawSidePiece(padding + 380 + 4 + 5 + 20 * 2, 10 + 40 + 6 * 20, pieceList[2]);
+    drawGridSide();
     drawScore();
-    drawBorder();
+    drawBorderMain();
+    drawBorderSide();
 }
 
 function renderRemove() {
     ctx.clearRect(0, 0, 380 + padding * 2, 660);
     drawGradient();
-    placeBlocks();
+    drawBoard();
     placeRemove();
-    drawGrid();
+    drawGridMain();
+    drawSidePiece(padding + 380 + 4 + 5 + 20 * 2, 10 + 40 + 2 * 20, pieceList[1]);
+    drawSidePiece(padding + 380 + 4 + 5 + 20 * 2, 10 + 40 + 6 * 20, pieceList[2]);
+    drawGridSide();
     drawScore();
-    drawBorder();
+    drawBorderMain();
+    drawBorderSide();
 }
 
 function renderGameover() {
     ctx.clearRect(0, 0, 380 + padding * 2, 660);
     drawGradient();
-    placeBlocks();
-    drawGrid();
-    drawBorder();
+    drawBoard();
+    drawGridMain();
+    drawSidePiece(padding + 380 + 4 + 5 + 20 * 2, 10 + 40 + 2 * 20, pieceList[1]);
+    drawSidePiece(padding + 380 + 4 + 5 + 20 * 2, 10 + 40 + 6 * 20, pieceList[2]);
+    drawGridSide();
+    drawBorderMain();
+    drawBorderSide();
     drawEnding();
 }
 
@@ -397,7 +387,7 @@ function drawGradient() {
     ctx.restore();
 }
 
-function placeBlocks() {
+function drawBoard() {
     ctx.save();
     var imgToDraw;
     var boardTile;
@@ -422,6 +412,35 @@ function placeBlocks() {
     ctx.restore();
 }
 
+function drawSidePiece(x, y, piece) {
+    var occupyData = checkOccupy(piece);
+    var imgToDraw;
+    var px, py, a;
+    
+    px=occupyData[0][0] - 4; py=occupyData[0][1] + 2;
+    if (biasDayNight == 0)
+        imgToDraw = imgCn;
+    else
+        imgToDraw = imgCd;
+    ctx.drawImage(imgToDraw, 0, 0, 40, 40, x + 20*px, y + 20*py, 20, 20);
+    
+    px=occupyData[1][0] - 4; py=occupyData[1][1] + 2;
+    a = occupyData[3][0];
+    if (biasDayNight == 0)
+        imgToDraw = imgWn[a];
+    else
+        imgToDraw = imgWd[a];
+    ctx.drawImage(imgToDraw, 0, 0, 40, 40, x + 20*px, y + 20*py, 20, 20);
+    
+    px=occupyData[2][0] - 4; py=occupyData[2][1] + 2;
+    a = occupyData[3][1];
+    if (biasDayNight == 0)
+        imgToDraw = imgWn[a];
+    else
+        imgToDraw = imgWd[a];
+    ctx.drawImage(imgToDraw, 0, 0, 40, 40, x + 20*px, y + 20*py, 20, 20);
+}
+
 function placeRemove() {
     ctx.save();
     ctx.fillStyle = "#00F";
@@ -431,38 +450,60 @@ function placeRemove() {
     ctx.restore();
 }
 
-function drawGrid() {
+function drawGridMain() {
     ctx.save();
     if(biasDayNight === 0)
         ctx.strokeStyle = "#000";
     else
         ctx.strokeStyle = "#FFF";
-    ctx.lineWidth = 2;
-    for(let i=1; i < 16; i++) {
-        ctx.beginPath();
-        ctx.moveTo(10 + padding, 10 + 40*i)
-        ctx.lineTo(10 + 40*9 + padding, 10 + 40*i)
-        ctx.stroke();
-    }
-    for(let j=1; j < 9; j++) {
-        ctx.beginPath();
-        ctx.moveTo(10 + 40*j + padding, 10)
-        ctx.lineTo(10 + 40*j + padding, 10 + 40*16)
-        ctx.stroke();
-    }
+    drawGrid(10, 10, 40, 9, 16);
     ctx.restore();
 }
 
-function drawBorder() {
+function drawGridSide() {
+    ctx.save();
+    ctx.strokeStyle = "rgb(59, 134, 202)";
+    drawGrid(380 + 4 + 5, 50, 20, 5, 9);
+    ctx.restore();
+}
+
+function drawGrid(x, y, sq, n, m) {
+    ctx.lineWidth = 2;
+    for(let i=1; i < m; i++) {
+        ctx.beginPath();
+        ctx.moveTo(x + padding, y + sq*i)
+        ctx.lineTo(x + sq*n + padding, y + sq*i)
+        ctx.stroke();
+    }
+    for(let j=1; j < n; j++) {
+        ctx.beginPath();
+        ctx.moveTo(x + sq*j + padding, y)
+        ctx.lineTo(x + sq*j + padding, y + sq*m)
+        ctx.stroke();
+    }
+}
+
+function drawBorderMain() {
     ctx.save();
     if(biasDayNight === 0)
         ctx.strokeStyle = "#000";
     else
         ctx.strokeStyle = "#FFF";
-    ctx.lineWidth = 10;
-    ctx.lineJoin = "round";
-    ctx.strokeRect(5 + 1 + padding, 5 + 1, 40 * 9 + 10 - 2, 40 * 16 + 10 - 2);
+    drawBorder(10, 10, 40 * 9, 40 * 16, 10);
     ctx.restore();
+}
+
+function drawBorderSide() {
+    ctx.save();
+    ctx.strokeStyle = "rgb(59, 134, 202)";
+    drawBorder(380 + 4 + 5, 50, 20 * 5, 20 * 9, 4);
+    ctx.restore();
+}
+
+function drawBorder(x, y, dx, dy, w) {
+    ctx.lineWidth = w+1;
+    ctx.lineJoin = "round";
+    ctx.strokeRect(x + 1 - ((w+1)/2)+ padding, y + 1 - ((w+1)/2), dx + w+1 - 2, dy + w+1 - 2);
 }
 
 function drawEnding() {
@@ -471,18 +512,18 @@ function drawEnding() {
     ctx.fillRect(0 + padding, 0, 380, 660);
     ctx.fillStyle = "#FFF";
     ctx.textAlign = "center";
-    ctx.font = "60px Cafe24SsurroundAir"
+    ctx.font = "60px SF_IceLemon"
     ctx.fillText("끝", padding + 380 / 2, 240);
-    ctx.font = "30px Cafe24SsurroundAir"
-    ctx.fillText("점수: " + score, padding + 380 / 2, 660 - 240);
+    ctx.font = "30px SF_IceLemon"
+    ctx.fillText(score, padding + 380 / 2, 660 - 240);
     ctx.restore();
 }
 
 function drawScore() {
     ctx.save();
     ctx.fillStyle = "rgb(59, 134, 202)";
-    ctx.font = "30px Cafe24SsurroundAir"
-    ctx.fillText("점수: " + score, padding + 380 + 5, 30);
+    ctx.font = "30px SF_IceLemon"
+    ctx.fillText(score, padding + 380 + 5, 30);
     ctx.restore();
 }
 
@@ -561,4 +602,28 @@ function switchDayNight() {
 function template() {
     ctx.save();
     ctx.restore();
+}
+
+/* debug */
+
+function debugBoard() {
+    board = [[-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [ 0, 1,-1,-1,-1,-1,-1,-1,-1],
+             [ 7,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1]];
 }
