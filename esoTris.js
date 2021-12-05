@@ -7,7 +7,7 @@ function checkLoad() {
     }
 }
 
-var buttonDayNight, canvas, ctx, grad;
+var buttonDayNight, GitHub_Mark, canvas, ctx, grad;
 
 // images
 
@@ -45,6 +45,7 @@ var score = 0;
 
 window.onload = function () {
     buttonDayNight = document.getElementById("buttonDayNight");
+    GitHub_Mark = document.getElementById("GitHub-Mark");
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
     Tris = document.getElementById("Tris");
@@ -117,6 +118,8 @@ function main() { /* "키 입력 -> 새로운 block 상태 계산 -> 렌더링" 
     }
 
     /* var debugTimeEnd = performance.now(); console.log(debugTimeEnd - debugTimeStart); */
+    
+    canvas.style.margin = "10px " + Math.floor((document.body.clientWidth - padding * 2 - 380)/2) + "px 10px";
 }
 
 /* initialize */
@@ -604,11 +607,13 @@ function switchDayNight() {
     if(biasDayNight === 0) {
         document.body.style.background = "#FFF";
         buttonDayNight.style.background = "url(images/moon.png)";
+        GitHub_Mark.setAttribute("src", "images/GitHub-Mark/PNG/GitHub-Mark-32px.png");
         Tris.style.color = "#000";
     }
     else {
         document.body.style.background = "#000";
         buttonDayNight.style.background = "url(images/sun.png)";
+        GitHub_Mark.setAttribute("src", "images/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png");
         Tris.style.color = "#FFF";
     }
 }

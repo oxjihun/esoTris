@@ -123,3 +123,19 @@ https://hianna.tistory.com/480
 https://stackoverflow.com/a/8683553
 
 https://stackoverflow.com/q/19053181
+
+# 2021-12-05
+
+https://github.com/logos
+
+https://www.w3schools.com/html/html_images.asp
+
+https://www.w3schools.com/cssref/pr_dim_line-height.asp
+
+https://stackoverflow.com/q/17711146
+
+https://stackoverflow.com/q/1847460
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
+
+https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window

@@ -1,3 +1,7 @@
+* {
+    box-sizing:border-box;
+}
+
 @font-face {
     font-family: 'SF_IceLemon';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_IceLemon.woff') format('woff');
@@ -9,11 +13,12 @@ body {
     margin:0;
     padding:0;
     text-align:center;
+    overflow-x: hidden;
 }
 
 main {
-    font:30px SF_IceLemon;
-    height: 30px;
+    font:32px SF_IceLemon;
+    height: 32px;
 }
 
 main:hover {
@@ -29,19 +34,39 @@ main:hover {
     color:#3b86ca
 }
 
+#eso, #Tris {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.divider {
+    display: inline-block;
+    width: 10px; 
+    height: 32px;
+    border: 3px solid #3b86ca;
+    margin:0 10px 0;
+}
+
 #buttonDayNight {
-    height:30px;
-    width:30px;
+    height:32px;
+    width:32px;
     background:url(images/moon.png);
     border:0;
     margin:0;
+    padding:0;
 }
 
-#buttonDayNight:hover {
+#GitHub-Mark, #GitHub-Repo {
+    display: inline-block;
+    height:32px;
+    width:32px;
+}
+
+button:hover {
     cursor: pointer;
 }
 
-#buttonDayNight:focus {
+button:focus {
     outline: none;
     box-shadow: none;
 }
