@@ -48,6 +48,7 @@ window.onload = function () {
     GitHub_Mark = document.getElementById("GitHub-Mark");
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
+    ctx.save(); // the only save
     Tris = document.getElementById("Tris");
 
     biasDayNight = 0; // 0: day, 9: night
@@ -398,14 +399,12 @@ function renderGameover() {
 }
 
 function drawGradient() {
-    ctx.save();
     ctx.fillStyle = grad;
     ctx.fillRect(10 + padding, 10, 40*9, 40*16);
     ctx.restore();
 }
 
 function drawBoard() {
-    ctx.save();
     var imgToDraw;
     var boardTile;
     for(let i=0; i < 16; i++) {
@@ -459,7 +458,6 @@ function drawSidePiece(x, y, piece) {
 }
 
 function placeRemove() {
-    ctx.save();
     ctx.fillStyle = "#00F";
     for(let i=0; i < toRemove.length; i++) {
         ctx.drawImage(rmvr, -45 + padding, 10 + 40* toRemove[i] + 10);
@@ -468,7 +466,6 @@ function placeRemove() {
 }
 
 function drawGridMain() {
-    ctx.save();
     if(biasDayNight === 0)
         ctx.strokeStyle = "#000";
     else
@@ -478,7 +475,6 @@ function drawGridMain() {
 }
 
 function drawGridSide() {
-    ctx.save();
     ctx.strokeStyle = "rgb(59, 134, 202)";
     drawGrid(380 + 4 + 5, 50, 20, 5, 9);
     ctx.restore();
@@ -501,7 +497,6 @@ function drawGrid(x, y, sq, n, m) {
 }
 
 function drawBorderMain() {
-    ctx.save();
     if(biasDayNight === 0)
         ctx.strokeStyle = "#000";
     else
@@ -511,7 +506,6 @@ function drawBorderMain() {
 }
 
 function drawBorderSide() {
-    ctx.save();
     ctx.strokeStyle = "rgb(59, 134, 202)";
     drawBorder(380 + 4 + 5, 50, 20 * 5, 20 * 9, 4);
     ctx.restore();
@@ -524,7 +518,6 @@ function drawBorder(x, y, dx, dy, w) {
 }
 
 function drawEnding() {
-    ctx.save();
     ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
     ctx.fillRect(0 + padding, 0, 380, 660);
     ctx.fillStyle = "#FFF";
@@ -537,7 +530,6 @@ function drawEnding() {
 }
 
 function drawScore() {
-    ctx.save();
     ctx.fillStyle = "rgb(59, 134, 202)";
     ctx.font = "30px SF_IceLemon"
     ctx.fillText(score, padding + 380 + 5, 30);
@@ -545,7 +537,6 @@ function drawScore() {
 }
 
 function drawTriangle(piece) {
-    ctx.save();
     var occupyData;
 
     ctx.strokeStyle = "#FFF";
@@ -616,11 +607,6 @@ function switchDayNight() {
         GitHub_Mark.setAttribute("src", "images/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png");
         Tris.style.color = "#FFF";
     }
-}
-
-function template() {
-    ctx.save();
-    ctx.restore();
 }
 
 /* debug */

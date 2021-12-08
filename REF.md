@@ -139,3 +139,27 @@ https://stackoverflow.com/q/1847460
 https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
 
 https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
+
+# 2021-12-06
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Closures
+
+https://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname
+
+https://www.w3schools.com/js/js_scope.asp
+
+https://code.likeagirl.io/why-the-heck-do-i-need-to-use-semi-colons-in-javascript-4f8712c82329
+
+https://stackoverflow.com/questions/17036135/why-are-semicolons-not-used-after-if-else-statements/17036218
+
+https://stackoverflow.com/questions/32673658/how-much-memory-does-a-closure-take
+
+# 2021-12-07
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
+
+# 2021-12-08
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes
+
+https://stackoverflow.com/questions/57929143/javascript-when-to-use-a-class-vs-a-prototype
