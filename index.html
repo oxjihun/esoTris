@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="esoTris.css" />
 </head>
 <body>
-    <canvas id="canvas" width="1000" height="660">
-        esoTris
-    </canvas>
-    <main><span id="eso">eso</span><span id="Tris">Tris</span><div class="divider"></div><button id="buttonDayNight" onclick="switchDayNight();"></button><div class="divider"></div><a id="GitHub-Repo" target="_blank" href="https://github.com/oxjihun/esoTris"><img id="GitHub-Mark" alt="GitHub Repo" src="images/GitHub-Mark/PNG/GitHub-Mark-32px.png" /></a>
-    </main>
+    <header>
+        <div class="header-content"><span id="eso" style="font-size:32px">eso</span><span id="Tris">Tris</span></div>
+        <div class="header-divider"></div>
+        <div class="header-content"><button id="buttonDayNight" onclick="switchDayNight();"></button></div>
+        <div class="header-divider"></div>
+        <div class="header-content"><a id="GitHub-Repo" target="_blank" href="https://github.com/oxjihun/esoTris"><img id="GitHub-Mark" alt="GitHub Repo" src="images/GitHub-Mark-120px-plus.png" /></a></div>
+    </header>
+    <div id="game-area">
+        <canvas id="canvas" width="1000" height="660">esoTris</canvas>
+    </div>
 </body>
 </html>

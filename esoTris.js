@@ -3,7 +3,7 @@ var count = 14; // blocks(10) + rmvr(1) + font(1) + sun(1) + moon(1)
 function checkLoad() {
     count = count - 1;
     if (count === 0) {
-        setInterval(main, 5); /* 얼마나 빨리 화면이 바뀌는지 결정 */
+        setInterval(renderFrame, 5); /* 얼마나 빨리 화면이 바뀌는지 결정 */
     }
 }
 
@@ -64,7 +64,7 @@ window.onload = function () {
     loadImage();
 };
 
-function main() { /* "키 입력 -> 새로운 block 상태 계산 -> 렌더링" 반복 */
+function renderFrame() { /* "키 입력 -> 새로운 block 상태 계산 -> 렌더링" 반복 */
     /* var debugTimeStart = performance.now(); */
 
     if(renderState === "game") {

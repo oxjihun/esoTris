@@ -40,7 +40,9 @@ https://tecadmin.net/get-current-date-time-javascript/
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-# 2021-11-18 (자기 전, 자정 지난 시점)
+# 2021-11-18
+
+<!--자기 전, 자정 지난 시점에 기록함 -->
 
 https://www.w3schools.com/html/html_favicon.asp
 
@@ -163,3 +165,50 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes
 
 https://stackoverflow.com/questions/57929143/javascript-when-to-use-a-class-vs-a-prototype
+
+# 2021-12-09
+
+https://github.com/vzhou842/example-.io-game/blob/master/src/client/assets.js
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const
+
+# 2021-12-10
+
+https://stackoverflow.com/questions/13618571/should-negative-indexes-in-javascript-arrays-contribute-to-array-length
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const
+
+https://stackoverflow.com/questions/5717126/var-or-no-var-in-javascripts-for-in-loop
+
+https://stackoverflow.com/questions/54760902/why-can-i-declare-a-javascript-var-multiple-times
+
+https://stackoverflow.com/questions/8108688/in-python-when-should-i-use-a-function-instead-of-a-method
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+https://stackoverflow.com/questions/4597926/what-is-the-difference-between-new-object-and-object-literal-notation
+
+# 2022-01-06
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+
+# 2022-01-14
+
+https://github.com/vzhou842/example-.io-game/blob/master/src/client/assets.js
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+
+# 2022-01-15
+
+https://developer.mozilla.org/ko/docs/Web/HTML/Element/header
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+
+# 2022-01-17
+
+https://stackoverflow.com/questions/61429817/javascript-questions-about-using-const-for-lists-and-objects
+https://www.w3schools.com/jsref/jsref_concat_array.asp

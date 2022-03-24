@@ -16,18 +16,35 @@ body {
     overflow-x: hidden;
 }
 
-main {
-    font:32px SF_IceLemon;
-    height: 32px;
+header {
+    height:32px; 
+    margin-top:8px; 
+    font-size: 0
 }
 
-main:hover {
+.header-content {
+    display: inline-block;
+    font:32px SF_IceLemon;
+}
+
+.header-divider {
+    display: inline-block;
+    width: 10px; 
+    height: 32px;
+    border: 3px solid #3b86ca;
+    margin:0 8px 0;
+}
+
+header:hover {
     cursor: default;
+}
+
+#game-area {
+    margin-top: 8px;
 }
 
 #canvas {
     display:inline-block;
-    margin:10px 0 10px;
 }
 
 #eso {
@@ -37,14 +54,6 @@ main:hover {
 #eso, #Tris {
     display: inline-block;
     vertical-align: top;
-}
-
-.divider {
-    display: inline-block;
-    width: 10px; 
-    height: 32px;
-    border: 3px solid #3b86ca;
-    margin:0 10px 0;
 }
 
 #buttonDayNight {
